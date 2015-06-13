@@ -8,5 +8,12 @@ namespace SSE_661_Project_2
 {
     class SkeleRoomCaretaker
     {
+        SkeleRoomMemento memento;
+
+        public SkeleRoomMemento Memento
+        {
+            set { memento = value; }
+            get { return memento; }
+        }
     }
 }

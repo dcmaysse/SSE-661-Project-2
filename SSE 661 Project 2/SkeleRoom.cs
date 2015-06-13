@@ -17,6 +17,7 @@ namespace SSE_661_Project_2
         {
             random = new Random();
             walls = new int[4];
+            facing = -1;
         }
 
         public static SkeleRoom Instance()
@@ -45,7 +46,7 @@ namespace SSE_661_Project_2
 
         public void printDetails()
         {
-            if (facing == null)
+            if (facing == -1)
                 Console.WriteLine("Not instantiated");
             else
             {
@@ -57,8 +58,24 @@ namespace SSE_661_Project_2
                     if (walls[i] == 1)
                         wallString = wallString + " " + i;
                 }
-                Console.WriteLine("Walls:" + wallString);
+                Console.WriteLine("Walls:" + wallString+"\r\n");
             }
+        }
+
+        public SkeleRoomMemento createMemento()
+        {
+            int[] data = new int[] { facing, sizeX, sizeY, x, y };
+            return new SkeleRoomMemento(walls, data);
+        }
+
+        public void setMemento(SkeleRoomMemento memento)
+        {
+            walls = memento.wallState;
+            facing = memento.dataState[0];
+            sizeX = memento.dataState[1];
+            sizeY = memento.dataState[2];
+            x = memento.dataState[3];
+            y = memento.dataState[4];
         }
     }
 }
